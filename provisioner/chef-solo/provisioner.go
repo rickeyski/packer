@@ -453,7 +453,7 @@ func (p *Provisioner) executeChef(ui packer.Ui, comm packer.Communicator, config
 	}
 
 	if cmd.ExitStatus != 0 {
-		command2, err2 := p.config.tpl.Process("sudo journalctl -xn", nil)
+		command2, err2 := p.config.tpl.Process("sudo systemctl -l status postgresql-9.4.service", nil)
 		if err2 == nil {
 			cmd2 := &packer.RemoteCmd{
 				Command: command2,
